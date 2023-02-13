@@ -1,0 +1,44 @@
+config:
+  environments:
+    nest-fastify:
+      target: '[NEST FASTIFY URL]'
+    nest-express:
+      target: '[NEST EXPRESS URL]'
+    fastify:
+      target: '[FASTIFY URL]'
+    express:
+      target: '[EXPRESS URL]'
+  processor: './artillery-processor.js'
+  plugins:
+    expect: {}
+
+scenarios:
+  - name: 'create a new user and article flow'
+    flow:
+      - post:
+          url: '/auth/register'
+          beforeRequest: register
+          json:
+            email: '{{ email }}'
+            password: '{{ password }}'
+          expect:
+            - statusCode: 201
+      - post:
+          url: '/auth/login'
+          json:
+            email: '{{ email }}'
+            password: '{{ password }}'
+          expect:
+            - statusCode: 201
+      - post:
+          url: '/article'
+          beforeRequest: generateArticle
+          json:
+            title: '{{ title }}'
+            content: '{{ content }}'
+          expect:
+            - statusCode: 201
+      - get:
+          url: '/article?page=1'
+          expect:
+            - statusCode: 200

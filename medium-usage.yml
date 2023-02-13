@@ -1,0 +1,5 @@
+config:
+  phases:
+    - duration: 180
+      arrivalRate: 4
+      name: Medium usage

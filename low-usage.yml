@@ -1,0 +1,5 @@
+config:
+  phases:
+    - duration: 180
+      arrivalRate: 2
+      name: Low usage

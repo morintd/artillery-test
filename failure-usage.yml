@@ -1,0 +1,12 @@
+config:
+  phases:
+    - duration: 60
+      arrivalRate: 4
+      rampTo: 4
+      name: Medium usage
+    - duration: 120
+      arrivalRate: 5
+      name: Stress 1
+    - duration: 120
+      arrivalRate: 6
+      name: Stress 2
